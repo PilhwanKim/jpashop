@@ -27,7 +27,7 @@ public class OrderRepository {
 
     // 동적 쿼리는 JPQL, Criteria, QueryDSL 이 있다.
     // 권장하는 방식은 QueryDSL 이다.
-    public List<Order> findAll(OrderSearch orderSearch) {
+    public List<Order> findAllByString(OrderSearch orderSearch) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Order> cq = cb.createQuery(Order.class);
         Root<Order> o = cq.from(Order.class);
