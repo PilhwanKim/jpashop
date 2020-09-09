@@ -43,6 +43,22 @@ public class OrderApiController {
         return result;
     }
 
+    @GetMapping("/api/v3/orders")
+    public List<OrderDto> ordersV3() {
+        List<Order> orders = orderRepository.findAllWithItem();
+
+        /* 주석 풀고 보기 : 컬렉션 fetch join의 order 중복 확인용 */
+//        for (Order order : orders) {
+//            System.out.println("order ref=" + order + " id=" + order.getId());
+//        }
+
+        List<OrderDto> result = orders.stream()
+                .map(o -> new OrderDto(o))
+                .collect(Collectors.toList());
+
+        return result;
+    }
+
     @Getter
     static class OrderDto {
 
